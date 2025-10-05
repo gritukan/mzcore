@@ -108,7 +108,7 @@ impl<T> SequenceElement<T> {
 impl<T> SequenceElement<T> {
     /// # Errors
     /// If the underlying formatter errors.
-    pub(crate) fn display(
+    pub fn display(
         &self,
         f: &mut impl Write,
         placed_ambiguous: &[usize],
@@ -143,7 +143,7 @@ impl<T> SequenceElement<T> {
     }
 
     /// Get the molecular formulas for this position without any the ambiguous modifications
-    pub(crate) fn formulas_base(
+    pub fn formulas_base(
         &self,
         all_peptidoforms: &[Peptidoform<Linked>],
         visited_peptidoforms: &[usize],
@@ -173,7 +173,7 @@ impl<T> SequenceElement<T> {
 
     /// Get the molecular formulas for this position with the ambiguous modifications placed on the very first placed (and updating this in `placed`), without any global isotope modifications
     #[expect(clippy::too_many_arguments)]
-    pub(crate) fn formulas_greedy(
+    pub fn formulas_greedy(
         &self,
         placed: &mut [bool],
         all_peptidoforms: &[Peptidoform<Linked>],
@@ -203,7 +203,7 @@ impl<T> SequenceElement<T> {
     }
 
     /// Get the molecular formulas for this position with all ambiguous modifications, without any global isotope modifications
-    pub(crate) fn formulas_all(
+    pub fn formulas_all(
         &self,
         all_peptidoforms: &[Peptidoform<Linked>],
         visited_peptidoforms: &[usize],
@@ -233,7 +233,7 @@ impl<T> SequenceElement<T> {
 
     /// Get the molecular formulas for this position with the ambiguous modifications placed on the very first placed (and updating this in `placed`), without any global isotope modifications
     #[expect(clippy::too_many_arguments)]
-    pub(crate) fn formulas_generic(
+    pub fn formulas_generic(
         &self,
         place_ambiguous: &mut impl FnMut(usize) -> bool,
         all_peptidoforms: &[Peptidoform<Linked>],
@@ -324,7 +324,7 @@ impl<T> SequenceElement<T> {
     /// If a rule has been broken.
     /// # Panics
     /// If any placement rule is placement on a PSI modification that does not exist.
-    pub(crate) fn enforce_modification_rules(
+    pub fn enforce_modification_rules(
         &self,
         position: SequencePosition,
     ) -> Result<(), BoxedError<'static, BasicKind>> {
@@ -362,7 +362,7 @@ impl<T> SequenceElement<T> {
     }
 
     /// Get all possible diagnostic ions
-    pub(crate) fn diagnostic_ions(
+    pub fn diagnostic_ions(
         &self,
         position: SequencePosition,
         n_term: &[Modification],
